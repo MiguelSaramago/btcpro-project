@@ -38,7 +38,7 @@ def envSetup(){
 }
 
 def build() {
-    sh 'ls'
+    sh 'docker run -d -p 80:80 docker/getting-started'
     sh 'docker-compose up -d   '
     sh 'python Mapping.py'
     sh 'python SaveIssues.py'
