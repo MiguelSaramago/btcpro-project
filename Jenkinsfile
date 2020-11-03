@@ -39,7 +39,7 @@ def envSetup(){
 
 def build() {
     sh 'ls'
-    sh 'dockcer-compose up -d   '
+    sh 'docker-compose up -d   '
     sh 'python Mapping.py'
     sh 'python SaveIssues.py'
 }
