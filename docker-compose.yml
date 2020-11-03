@@ -1,0 +1,49 @@
+version: "3"
+
+networks:
+  default:
+    driver: bridge
+
+volumes:
+  grafana_data:
+  elasticsearch_data:
+
+services:
+  grafana:
+    container_name: Grafana
+    image: grafana/grafana:latest
+    restart: "no"
+    networks:
+      default:
+    ports:
+      - 127.0.0.1:3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      GF_INSTALL_PLUGINS: grafana-piechart-panel,
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:7.6.2
+    restart: "no"
+    networks:
+      default:
+    ports:
+      - 127.0.0.1:9200:9200
+      - 127.0.0.1:9300:9300
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    environment:
+      discovery.type: single-node
+      http.port: 9200
+      http.cors.enabled: "true"
+      http.cors.allow-origin: http://localhost:1358,http://127.0.0.1:1358
+      http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      http.cors.allow-credentials: "true"
+  dejavu:
+    container_name: Dejavu
+    image: appbaseio/dejavu:latest
+    restart: "no"
+    networks:
+      default:
+    ports:
+      - 127.0.0.1:1358:1358

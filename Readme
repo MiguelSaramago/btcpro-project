@@ -1,0 +1,13 @@
+Setup an local environment
+
+1. Setup the environment
+    Using docker, run the docker compose using the file "docker-compose.yml"
+2. Create the data structure in elasticsearch
+    Configure de connection with elasticsearch in "Mapping.py" and run the python script
+3. Save issues in elasticsearch
+    Change setting in "SaveIssues.py" and run the python script
+4. Create the data sources in grafana
+    "BT-ClosingDate" - index "projects_issues", Time field "closing_date"
+    "BT-CreationDate" - index "projects_issues", Time field "creation_date"
+    "BT-Projects" - index "projects", Time field "last_update"
+5. Import dashboard ("grafana.json") to grafana
