@@ -38,8 +38,8 @@ def envSetup(){
 }
 
 def build() {
-    sh 'sudo service docker start'
-    sh 'docker run -d -p 80:80 docker/getting-started'
+    
+    sh 'sudo docker run -d -p 80:80 docker/getting-started'
     sh 'ls'
     sh 'docker-compose --version'
     sh 'docker-compose up -d   '
